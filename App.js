@@ -1,58 +1,57 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   Platform,
+  Alert,
   StyleSheet,
   Text,
-  View
+  View,
+  ScrollView,
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
+// import HomeView from './common/views/Home';
+import CompetitorsView from './common/views/Competitors';
 type Props = {};
+let id = 3;
 export default class App extends Component<Props> {
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(competitors => this.setState({competitors}))
+  }
+
+  constructor (...args) {
+    super(...args);
+    this.state = {
+      competitors: [
+        {
+          id: 1,
+          name: 'Illia LUkianov',
+        },
+        {
+          id: 2,
+          name: 'Eugen Tymo',
+        },
+      ],
+    };
+  }
+
+  paginate = (arg) => {
+    Alert.alert('arg');
+  };
+  addCompetitor = (competitor) => {
+    this.setState({
+      id: id++,
+      competitors: this.state.competitors.concat(competitor),
+    });
+  };
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Illia
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+      <CompetitorsView
+        competitors={this.state.competitors}
+        addCompetitor={this.addCompetitor}
+      />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
