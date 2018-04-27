@@ -8,10 +8,10 @@ import {
 } from 'react-native';
 
 import styles from './styles';
-import Competitor from './components/Competitor';
-import CompetitorForm from './components/CompetitorForm';
+import Competitor from './Competitor';
+import CompetitorForm from './CompetitorForm';
 
-export default class CompetitorsView extends Component<Props> {
+export default class Competitors extends Component<Props> {
   getKeyFromCompetitor = competitor => '' + competitor.id;
   renderCompetitor({item}) {
     return <Competitor name={item.name} />;

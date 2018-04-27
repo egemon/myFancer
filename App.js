@@ -8,50 +8,48 @@ import {
   ScrollView,
 } from 'react-native';
 
-// import HomeView from './common/views/Home';
-import CompetitorsView from './common/views/Competitors';
+import {Provider} from 'react-redux'
+import store from './app/services/store';
+import Navigator from './app/views/Navigator';
+
 type Props = {};
-let id = 3;
+// let id = 3;
 export default class App extends Component<Props> {
 
-  componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(competitors => this.setState({competitors}))
-  }
+  // componentDidMount() {
+  //   fetch('https://jsonplaceholder.typicode.com/users')
+  //     .then(response => response.json())
+  //     .then(competitors => this.setState({competitors}))
+  // }
 
-  constructor (...args) {
-    super(...args);
-    this.state = {
-      competitors: [
-        {
-          id: 1,
-          name: 'Illia LUkianov',
-        },
-        {
-          id: 2,
-          name: 'Eugen Tymo',
-        },
-      ],
-    };
-  }
+  // constructor (...args) {
+  //   super(...args);
+  //   this.state = {
+  //     trackNumber: '0',
+  //     competitors: [],
+  //   };
+  // }
+  //
+  // startGame = () => {
+  //   Alert.alert('The game begin!');
+  // // };
+  //
+  // addCompetitor = (competitor) => {
+  //   this.setState({
+  //     id: id++,
+  //     competitors: this.state.competitors.concat(competitor),
+  //   });
+  // };
 
-  paginate = (arg) => {
-    Alert.alert('arg');
-  };
-  addCompetitor = (competitor) => {
-    this.setState({
-      id: id++,
-      competitors: this.state.competitors.concat(competitor),
-    });
-  };
+  // updateTrackNumber = (trackNumber) => {
+  //   this.setState({trackNumber});
+  // };
 
   render() {
     return (
-      <CompetitorsView
-        competitors={this.state.competitors}
-        addCompetitor={this.addCompetitor}
-      />
+      <Provider store={store}>
+        <Navigator />
+      </Provider>
     );
   }
 }
