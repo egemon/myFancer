@@ -5,15 +5,18 @@ import {
   StyleSheet,
   Text,
   View,
+  Alert,
   Button,
 } from 'react-native';
 
 import styles from './styles';
 import Competitors from './Competitors';
 import TrackNumber from './TrackNumber'
-import {editTruckNumber, creatCompetitor} from '../../actions';
+import {editTruckNumber, createCompetitor} from '../../actions';
 
 
+// Alert.alert(JSON.stringify(editTruckNumber));
+// Alert.alert(JSON.stringify(creatCompetitor));
 class HomeView extends Component<Props> {
   static navigationOptions = {
     title: 'Home',
@@ -24,6 +27,7 @@ class HomeView extends Component<Props> {
   };
 
   render () {
+
     return (
       <View style={styles.container}>
         <TrackNumber
@@ -33,7 +37,7 @@ class HomeView extends Component<Props> {
         />
         <Competitors
           competitors={this.props.competitors}
-          addCompetitor={this.props.creatCompetitor}
+          addCompetitor={this.props.createCompetitor}
         />
         <Button
           title="Start the game"
@@ -43,7 +47,7 @@ class HomeView extends Component<Props> {
       </View>
     );
   }
-};
+}
 
 export default connect((state) => {
   return {
@@ -51,5 +55,6 @@ export default connect((state) => {
     competitors: state.competitors,
   };
 }, {
-  editTruckNumber, creatCompetitor
+  editTruckNumber,
+  createCompetitor
 })(HomeView)

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Platform,
   StyleSheet,
@@ -12,7 +13,14 @@ import Competitor from './Competitor';
 import CompetitorForm from './CompetitorForm';
 
 export default class Competitors extends Component<Props> {
-  getKeyFromCompetitor = competitor => '' + competitor.id;
+  static propTypes = {
+    addCompetitor: PropTypes.func.isRequired,
+    competitors: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+  };
+  getKeyFromCompetitor = competitor => competitor.id;
   renderCompetitor({item}) {
     return <Competitor name={item.name} />;
   }

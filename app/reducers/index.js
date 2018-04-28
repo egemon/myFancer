@@ -1,16 +1,9 @@
-import {CREATE_COMPETITOR, EDIT_TRUCK_NUMBER} from '../actions/types';
-import { createActions, handleActions, combineActions } from 'redux-actions';
+import {combineReducers} from 'redux';
 
-export default handleActions({
-  [CREATE_COMPETITOR]: (state, {payload}) => ({
-    ...state,
-    competitors: state.competitors.concat(payload)
-  }),
-  [EDIT_TRUCK_NUMBER]: (state, {payload}) => ({
-    ...state,
-    truckNumber: payload,
-  }),
-}, {
-  competitors: [],
-  truckNumber: '0',
+import competitors from './competitors';
+import truckNumber from './truckNumber';
+
+export default combineReducers({
+  truckNumber,
+  competitors,
 });

@@ -15,7 +15,7 @@ export default class CompetitorForm extends Component<Props> {
     }
   }
 
-  handleSubmitEditing = (...args) => {
+  handleSubmitEditing = () => {
     this.props.handleSubmitEditing({
       name: this.state.name,
     });

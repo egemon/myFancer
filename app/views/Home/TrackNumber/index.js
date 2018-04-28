@@ -15,7 +15,7 @@ export default class TrackNumber extends Component<Props> {
     return (
       <View style={styles.container}>
         <Text style={styles.label}>
-          Enter number of tracks:
+          Number of tracks:
         </Text>
         <TextInput
           keyboardType='numeric'
