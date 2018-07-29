@@ -1,0 +1,27 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "plugin:jest/recommended"],
+  "plugins": [
+    "jest"
+  ],
+  "rules": {
+    "semi": [
+      2,
+      "never"
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "import/prefer-default-export": 0,
+    "react/no-typos": 1,
+    "max-len": [1, 160, 4],
+    "no-plusplus": 0,
+  }
+}
+

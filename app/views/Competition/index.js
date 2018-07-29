@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
-  Platform,
-  StyleSheet,
   Text,
   View,
-  Button,
-} from 'react-native';
+} from 'react-native'
 
-import styles from './styles';
+import styles from './styles'
 
-export default class CompetitionView extends Component<Props> {
+
+export default class CompetitionView extends Component {
   static navigationOptions = {
     title: 'Competition',
   };
 
-  render () {
+  render() {
     return (
       <View style={styles.container}>
-        <Text>Competition view content</Text>
+        <Text>
+Competition view content
+        </Text>
       </View>
-    );
+    )
   }
-};
+}
