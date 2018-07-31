@@ -7,7 +7,6 @@ import {
 
 import styles from './styles'
 import Competitors from './Competitors'
-import TrackNumber from './TrackNumber'
 
 
 const generaCompetitors = []
@@ -48,23 +47,16 @@ class HomeView extends PureComponent {
 
   render() {
     const {
-      editTruckNumber,
-      trackNumber,
-      competitors,
-      createCompetitor,
+      users,
+      createUser,
     } = this.props
 
-    console.log('competitors', getAllCombination(generaCompetitors))
+    console.log('users', getAllCombination(generaCompetitors))
     return (
       <View style={styles.container}>
-        <TrackNumber
-          style={styles.startBtn}
-          onChange={editTruckNumber}
-          value={trackNumber}
-        />
         <Competitors
-          competitors={competitors}
-          addCompetitor={createCompetitor}
+          competitors={users}
+          addCompetitor={createUser}
         />
         <Button
           title="Start the game"
@@ -80,12 +72,13 @@ HomeView.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  editTruckNumber: PropTypes.func.isRequired,
-  trackNumber: PropTypes.number.isRequired,
-  competitors: PropTypes.arrayOf(PropTypes.shape({
+  users: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
   }).isRequired).isRequired,
-  createCompetitor: PropTypes.func.isRequired,
+  createUser: PropTypes.func.isRequired,
+}
+
+HomeView.defaultProps = {
 }
 
 export default HomeView

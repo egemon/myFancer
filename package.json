@@ -5,7 +5,8 @@
   "scripts": {
     "precommit": "lint-staged",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "android": "react-native run-android"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -14,20 +15,28 @@
     ]
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "prop-types": "^15.6.1",
+    "ramda": "^0.25.0",
     "react": "16.3.1",
     "react-native": "0.55.3",
-    "react-navigation": "^1.5.11",
+    "react-native-elements": "^0.19.1",
+    "react-native-navigation": "^2.0.2431",
+    "react-native-vector-icons": "^5.0.0",
+    "react-navigation": "^2.9.3",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-actions": "^2.3.0",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^5.10.0",
+    "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",
     "babel-jest": "22.4.3",
-    "babel-preset-react-native": "3.0.0",
-    "eslint": "^5.2.0",
+    "babel-preset-react-native": "2.0.0",
+    "eslint": "4",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jest": "^21.18.0",
