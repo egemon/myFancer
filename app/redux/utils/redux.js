@@ -34,6 +34,7 @@ export const errorReducer = (state, action) => ({
   ...state, loading: false, data: null, error: action.payload,
 })
 
+// TODO: here should be also CRUD reducer for collections, this reducer for singleton
 export const createAsyncReducer = (asyncAction, otherActions) => handleActions({
   [asyncAction.request]: requestReducer,
   [asyncAction.success]: successReducer,

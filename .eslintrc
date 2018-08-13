@@ -22,6 +22,14 @@
     "react/no-typos": 1,
     "max-len": [1, 160, 4],
     "no-plusplus": 0,
+    "react/destructuring-assignment": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["app"]
+      }
+    }
   }
 }
 

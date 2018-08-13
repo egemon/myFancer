@@ -20,6 +20,13 @@ class Navigator {
       action: subaction,
     }))
   }
+
+  // TODO: maybe expose API of the default navigator and create anther mechanism
+  // to differ them?
+  getParam = (paramName, navigator = 'root') => {
+    const { routes, index } = this.navigators[navigator].state.nav
+    return routes[index].params[paramName]
+  }
 }
 
 export default new Navigator()

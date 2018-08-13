@@ -1,4 +1,6 @@
 import { createAction } from 'redux-actions'
-import { CREATE_USER } from './types'
+import { createAsyncActions } from '../../utils/redux'
 
-export const createUser = createAction(CREATE_USER)
+const createUserType = 'createUserType'
+export const createUser = createAction(createUserType)
+export const createUserAsyncActions = createAsyncActions(createUserType)

@@ -3,7 +3,7 @@ import { createLogger } from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 
 import rootReducer from './rootReducer'
-import flows from './flows/rootFlow'
+import flows from './rootFlow'
 
 const sagaMiddleware = createSagaMiddleware()
 export function configureStore(initialState = {}) {
