@@ -2,7 +2,7 @@ import {
   StackNavigator,
 } from 'react-navigation'
 import HomeC from './Home/HomeC'
-import MenuC from './Menu/MenuC'
+import Menu from './Menu/Menu'
 import CompetitionN from './Competition/CompetitionN'
 
 export const MENU = 'MENU'
@@ -11,7 +11,7 @@ export const COMPETITION = 'COMPETITION'
 
 export default StackNavigator({
   [MENU]: {
-    screen: MenuC,
+    screen: Menu,
     navigationOptions: {
       title: 'Main Menu',
     },

@@ -4,6 +4,7 @@ import createSagaMiddleware from 'redux-saga'
 
 import rootReducer from './rootReducer'
 import flows from './rootFlow'
+import tasks from '../views/rootTask'
 
 const sagaMiddleware = createSagaMiddleware()
 export function configureStore(initialState = {}) {
@@ -24,9 +25,9 @@ export function configureStore(initialState = {}) {
 
   const store = createStore(rootReducer, initialState, compose(
     ...middlewares.map(middleware => applyMiddleware(middleware)),
-  ))
+  ));
 
-  flows.forEach(flow => sagaMiddleware.run(flow))
+  [...flows, ...tasks].forEach(flow => sagaMiddleware.run(flow))
 
 
   return store

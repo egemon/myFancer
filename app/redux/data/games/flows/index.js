@@ -2,9 +2,9 @@ import {
   all, takeLatest,
 } from 'redux-saga/effects'
 
-import { createGame, togglePlayer } from './actions'
-import { createGameFlow } from './flows/createGame'
-import { togglePlayerFlow } from './flows/togglePlayer'
+import { createGame, togglePlayer } from '../actions'
+import { createGameFlow } from './createGame'
+import { togglePlayerFlow } from './togglePlayer'
 
 
 export default function* main() {
