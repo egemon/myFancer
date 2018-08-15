@@ -6,6 +6,11 @@ export const createGameRequest = game => () => Promise.resolve({
   id: String(Math.random()),
 })
 
+// TODO: maybe we need to send empty body only in response that update is oK
+export const updateGameRequest = game => () => Promise.resolve({
+  ...game,
+})
+
 export const togglePlayerRequest = ({
   player,
   wasSelected,

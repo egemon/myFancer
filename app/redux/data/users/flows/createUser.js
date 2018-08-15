@@ -1,28 +1,18 @@
-import { call } from 'redux-saga/effects'
+import { takeLatest } from 'redux-saga/effects'
 import { fetchWithActions } from '../../../utils/fetch'
 import { createUserRequest } from '../api'
-import { createUserAsyncActions } from '../actions'
-import navigator from '../../../navigator'
-import { COMPETITION } from '../../../../views/Navigator'
+import { createUserActions } from '../actions'
 
 export const createUserFlow = function* createUserFlow({
-  payload: {
-    data: {
-      name,
-    },
-    actions: {
-      clearQuery,
-    },
-  },
+  payload: user,
 }) {
   try {
     yield fetchWithActions({
-      request: createUserRequest({ name }),
-      actions: createUserAsyncActions,
+      request: createUserRequest(user),
+      actions: createUserActions,
     })
-    yield call(clearQuery)
-    navigator.go({ routeName: COMPETITION })
   } catch (err) {
     console.log('createUserFlowError')
   }
 }
+export const createUserFlowConfig = takeLatest(createUserActions.TRIGGER, createUserFlow)

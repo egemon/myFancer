@@ -1,6 +1,7 @@
+import { takeLatest } from 'redux-saga/effects'
 import { fetchWithActions } from '../../../utils/fetch'
 import { createGameRequest } from '../api'
-import { createGameAsyncActions } from '../actions'
+import { createGameActions } from '../actions'
 
 export const createGameFlow = function* createGameFlow({
   payload: game,
@@ -8,9 +9,10 @@ export const createGameFlow = function* createGameFlow({
   try {
     yield fetchWithActions({
       request: createGameRequest(game),
-      actions: createGameAsyncActions,
+      actions: createGameActions,
     })
   } catch (err) {
     console.log('createGameFlowError')
   }
 }
+export const createGameFlowConfig = takeLatest(createGameActions.TRIGGER, createGameFlow)

@@ -2,12 +2,12 @@ import R from 'ramda'
 import { createSelector } from 'reselect'
 
 import { createAsyncReducer, createAsyncSelectors } from '../../utils/redux'
-import { createGameAsyncActions, updateGameAsyncActions } from './actions'
+import { createGameActions, updateGameActions } from './actions'
 
 export const GAMES_RN = 'GAMES'
 // CRUD
-export default createAsyncReducer(createGameAsyncActions, {
-  [createGameAsyncActions.success]: (state, { payload }) => ({
+export default createAsyncReducer(createGameActions, {
+  [createGameActions.success]: (state, { payload }) => ({
     loading: false,
     error: null,
     data: {
@@ -15,7 +15,7 @@ export default createAsyncReducer(createGameAsyncActions, {
       [payload.id]: payload,
     },
   }),
-  [updateGameAsyncActions.success]: (state, { payload }) => ({
+  [updateGameActions.success]: (state, { payload }) => ({
     loading: false,
     error: null,
     data: {

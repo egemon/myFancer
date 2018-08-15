@@ -1,22 +1,22 @@
 import { createAction } from 'redux-actions'
 import { take, put, takeLatest } from 'redux-saga/effects'
-import { createGame, createGameAsyncActions } from '../../../redux/data/games/actions'
+import { createGameActions } from '../../../redux/data/games/actions'
 import navigator from '../../../redux/navigator'
 import { COMPETITION } from '../../Navigator'
 
 // TODO: all action types should be in one place to avoid collision
-const type = 'newGameTask'
+const type = 'makeGame'
 
-export const runCreateGame = createAction(type)
+export const makeGame = createAction(type)
 
 // TODO: think about automated unwrapping data from action payload, so it can
 // looks like function call directly
-export const newGame = function* createGameTask() {
+export const makeGameTask = function* makeGameTask() {
   try {
-    yield put(createGame({
+    yield put(createGameActions.trigger({
       players: [],
     }))
-    const { payload: { id } } = yield take(createGameAsyncActions.SUCCESS)
+    const { payload: { id } } = yield take(createGameActions.SUCCESS)
 
     navigator.go({
       routeName: COMPETITION,
@@ -29,4 +29,4 @@ export const newGame = function* createGameTask() {
   }
 }
 
-export default takeLatest(type, newGame)
+export default takeLatest(type, makeGameTask)

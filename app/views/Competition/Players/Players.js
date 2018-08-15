@@ -4,12 +4,16 @@ import {
   View,
   Button,
 } from 'react-native'
+import { selectedPlayerIdsSelector } from '../../../redux/data/games/reducer'
+import { togglePlayer } from './tasks/togglePlayer'
 import styles from './styles'
 import PlayerList from './PlayerList/PlayerList'
 import PlayerFilter from './PlayerFilter/PlayerFilter'
+import connector from '../../../redux/utils/connector'
+import { usersSelector } from '../../../redux/data/users/reducer'
+import { makeUser } from './tasks/makeUser'
 
-// eslint-disable-next-line
-export default class PlayersV extends PureComponent {
+class Players extends PureComponent {
   state = {
     filterQuery: '',
   }
@@ -25,17 +29,9 @@ export default class PlayersV extends PureComponent {
   }
 
   handleCreateUser = () => {
-    const {
-      createUser,
-    } = this.props
-
-    const {
-      filterQuery,
-    } = this.state
-
-    createUser({
+    this.props.makeUser({
       data: {
-        name: filterQuery,
+        name: this.state.filterQuery,
       },
       actions: {
         clearQuery: () => this.updateFilterQuery(''),
@@ -87,13 +83,26 @@ export default class PlayersV extends PureComponent {
   }
 }
 
-PlayersV.propTypes = {
+Players.propTypes = {
   users: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })).isRequired,
-  createUser: PropTypes.func.isRequired,
-  togglePlayer: PropTypes.func.isRequired,
   selectedIds: PropTypes.arrayOf(
     PropTypes.string.isRequired,
   ).isRequired,
+
+  makeUser: PropTypes.func.isRequired,
+  togglePlayer: PropTypes.func.isRequired,
 }
+
+const PlayersC = connector({
+  users: usersSelector,
+  selectedIds: selectedPlayerIdsSelector,
+}, {
+  makeUser,
+  togglePlayer,
+})(Players)
+
+PlayersC.title = 'Players'
+
+export default PlayersC

@@ -1,20 +1,32 @@
-/* eslint-disable no-underscore-dangle */
 
 import R from 'ramda'
 import { createAction, handleActions } from 'redux-actions'
 
+const trigger = 'trigger'
+const request = 'request'
+
+const success = 'success'
+const fail = 'fail'
+
+const clear = 'clear'
+
 export const createAsyncActions = (namespace) => {
-  const REQUEST = `${namespace.toUpperCase()}_REQUEST`
-  const SUCCESS = `${namespace.toUpperCase()}_SUCCESS`
-  const ERROR = `${namespace.toUpperCase()}_ERROR`
-  const CLEAR = `${namespace.toUpperCase()}_CLEAR`
+  const TRIGGER = `${namespace} : ${trigger}`
+  const REQUEST = `${namespace} : ${request}`
+  const SUCCESS = `${namespace} : ${success}`
+  const ERROR = `${namespace} : ${fail}`
+  const CLEAR = `${namespace} : ${clear}`
 
   return ({
+    TRIGGER,
+
     REQUEST,
     SUCCESS,
     ERROR,
+
     CLEAR,
 
+    trigger: createAction(TRIGGER),
     request: createAction(REQUEST),
     success: createAction(SUCCESS),
     error: createAction(ERROR),
@@ -24,13 +36,13 @@ export const createAsyncActions = (namespace) => {
 
 const initState = { loading: false, data: null, error: null }
 
-export const requestReducer = (state => ({
+const requestReducer = (state => ({
   ...state, loading: true, error: null,
 }))
-export const successReducer = (state, action) => ({
+const successReducer = (state, action) => ({
   ...state, loading: false, data: action.payload,
 })
-export const errorReducer = (state, action) => ({
+const failReducer = (state, action) => ({
   ...state, loading: false, data: null, error: action.payload,
 })
 
@@ -38,7 +50,7 @@ export const errorReducer = (state, action) => ({
 export const createAsyncReducer = (asyncAction, otherActions) => handleActions({
   [asyncAction.request]: requestReducer,
   [asyncAction.success]: successReducer,
-  [asyncAction.error]: errorReducer,
+  [asyncAction.fail]: failReducer,
   [asyncAction.clear]: () => ({ ...initState }),
   ...otherActions,
 }, initState)

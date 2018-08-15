@@ -2,7 +2,7 @@ import {
   StackNavigator,
 } from 'react-navigation'
 
-import PlayersC from './Players/PlayersC'
+import Players from './Players/Players'
 import GroupTurnC from './GroupTurn/GroupTurnC'
 import OlympicTurnC from './OlympicTurn/OlympicTurnC'
 
@@ -12,7 +12,7 @@ export const OLYMPIC_TURN = 'OLYMPIC_TURN'
 
 const CompetitionN = StackNavigator({
   [PLAYERS]: {
-    screen: PlayersC,
+    screen: Players,
     navigationOptions: { title: 'Players' },
   },
   [GROUP_TURN]: {

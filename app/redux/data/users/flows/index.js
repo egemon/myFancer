@@ -1,9 +1,10 @@
 import { all } from 'redux-saga/effects'
 
-import createGameTaskConfig from './makeGame'
+import { createUserFlowConfig } from './createUser'
+
 
 export default function* main() {
   yield all([
-    createGameTaskConfig,
+    createUserFlowConfig,
   ])
 }

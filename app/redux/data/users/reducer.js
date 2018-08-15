@@ -1,13 +1,13 @@
 import R from 'ramda'
 import { createSelector } from 'reselect'
-import { createUserAsyncActions } from './actions'
+import { createUserActions } from './actions'
 import { createAsyncReducer, createAsyncSelectors } from '../../utils/redux'
 
 export const USERS_RN = 'USERS'
 
 // TODO: maybe this is general collection reducer, we should also rewrite RUD for it?
-export default createAsyncReducer(createUserAsyncActions, {
-  [createUserAsyncActions.success]: (state, { payload }) => ({
+export default createAsyncReducer(createUserActions, {
+  [createUserActions.success]: (state, { payload }) => ({
     loading: false,
     error: null,
     data: {
