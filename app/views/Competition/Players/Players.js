@@ -13,6 +13,7 @@ import connector from '../../../redux/utils/connector'
 import { usersSelector } from '../../../redux/data/users/reducer'
 import { makeUser } from './tasks/makeUser'
 
+// TODO: rewrite with recompose
 class Players extends PureComponent {
   state = {
     filterQuery: '',
@@ -40,7 +41,6 @@ class Players extends PureComponent {
   }
 
   togglePlayer = (player, isSelected) => {
-    // TODO: colocate this somehow with sagas, as this data goes directly there
     this.props.togglePlayer({
       data: {
         player,

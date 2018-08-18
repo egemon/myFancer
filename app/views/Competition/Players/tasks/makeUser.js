@@ -5,10 +5,9 @@ import createAction from 'redux-actions/es/createAction'
 import { createUserActions } from '../../../../redux/data/users/actions'
 import navigator from '../../../../redux/navigator'
 import { COMPETITION } from '../../../Navigator'
+import { makeUserType } from '../../../../redux/action-types'
 
-const type = 'makeUser'
-
-export const makeUser = createAction(type)
+export const makeUser = createAction(makeUserType)
 export const makeUserTask = function* makeUserTask({
   payload: {
     data: user,
@@ -29,4 +28,4 @@ export const makeUserTask = function* makeUserTask({
     console.log('makeUserTaskError')
   }
 }
-export default takeLatest(type, makeUserTask)
+export default takeLatest(makeUserType, makeUserTask)

@@ -1,4 +1,4 @@
 import { createAsyncActions } from '../../utils/redux'
+import { createUserType } from '../../action-types'
 
-const createUserType = 'createUserType'
 export const createUserActions = createAsyncActions(createUserType)

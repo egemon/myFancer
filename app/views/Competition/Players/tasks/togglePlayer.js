@@ -4,10 +4,10 @@ import R from 'ramda'
 
 import navigator from '../../../../redux/navigator'
 import { updateGameActions } from '../../../../redux/data/games/actions'
+import { togglePlayerType } from '../../../../redux/action-types'
 
-const type = 'togglePlayer'
 
-export const togglePlayer = createAction(type)
+export const togglePlayer = createAction(togglePlayerType)
 export const togglePlayerTask = function* togglePlayerTask({
   payload: {
     data: {
@@ -29,4 +29,4 @@ export const togglePlayerTask = function* togglePlayerTask({
   }
 }
 
-export default takeLatest(type, togglePlayerTask)
+export default takeLatest(togglePlayerType, togglePlayerTask)

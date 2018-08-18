@@ -1,15 +1,13 @@
 import {
-  StackNavigator,
+  createStackNavigator,
 } from 'react-navigation'
-import HomeC from './Home/HomeC'
 import Menu from './Menu/Menu'
 import CompetitionN from './Competition/CompetitionN'
 
 export const MENU = 'MENU'
-export const HOME = 'HOME'
 export const COMPETITION = 'COMPETITION'
 
-export default StackNavigator({
+export default createStackNavigator({
   [MENU]: {
     screen: Menu,
     navigationOptions: {
@@ -22,7 +20,6 @@ export default StackNavigator({
       title: 'Competition',
     },
   },
-  [HOME]: { screen: HomeC }, // TODO not needed?
 },
 {
   initialRouteName: MENU,

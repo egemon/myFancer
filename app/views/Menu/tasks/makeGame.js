@@ -3,11 +3,11 @@ import { take, put, takeLatest } from 'redux-saga/effects'
 import { createGameActions } from '../../../redux/data/games/actions'
 import navigator from '../../../redux/navigator'
 import { COMPETITION } from '../../Navigator'
+import { makeGameType } from '../../../redux/action-types'
 
 // TODO: all action types should be in one place to avoid collision
-const type = 'makeGame'
 
-export const makeGame = createAction(type)
+export const makeGame = createAction(makeGameType)
 
 // TODO: think about automated unwrapping data from action payload, so it can
 // looks like function call directly
@@ -29,4 +29,4 @@ export const makeGameTask = function* makeGameTask() {
   }
 }
 
-export default takeLatest(type, makeGameTask)
+export default takeLatest(makeGameType, makeGameTask)
