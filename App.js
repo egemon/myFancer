@@ -1,10 +1,10 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 
-import './app/initializers'
-import store from './app/redux/store'
-import Navigator from './app/views/Navigator'
-import navigationService from './app/redux/navigator'
+import './src/initializers'
+import store from './src/redux/store'
+import Navigator from './src/views/Navigator'
+import navigationService from './src/redux/navigator'
 
 // YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Remote debugger'])
 console.disableYellowBox = true // eslint-disable-line

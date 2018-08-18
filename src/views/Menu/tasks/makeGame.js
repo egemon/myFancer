@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions'
 import { take, put, takeLatest } from 'redux-saga/effects'
-import { createGameActions } from '../../../redux/data/games/actions'
+import { gameCollectionActions } from '../../../redux/data/games/actions'
 import navigator from '../../../redux/navigator'
 import { COMPETITION } from '../../Navigator'
 import { makeGameType } from '../../../redux/action-types'
@@ -13,10 +13,10 @@ export const makeGame = createAction(makeGameType)
 // looks like function call directly
 export const makeGameTask = function* makeGameTask() {
   try {
-    yield put(createGameActions.trigger({
+    yield put(gameCollectionActions.create.trigger({
       players: [],
     }))
-    const { payload: { id } } = yield take(createGameActions.SUCCESS)
+    const { payload: { id } } = yield take(gameCollectionActions.create.SUCCESS)
 
     navigator.go({
       routeName: COMPETITION,

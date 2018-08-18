@@ -3,7 +3,7 @@ import createAction from 'redux-actions/es/createAction'
 import R from 'ramda'
 
 import navigator from '../../../../redux/navigator'
-import { updateGameActions } from '../../../../redux/data/games/actions'
+import { gameCollectionActions } from '../../../../redux/data/games/actions'
 import { togglePlayerType } from '../../../../redux/action-types'
 
 
@@ -17,7 +17,7 @@ export const togglePlayerTask = function* togglePlayerTask({
   },
 }) {
   try {
-    yield put(updateGameActions.trigger({
+    yield put(gameCollectionActions.update.trigger({
       id: navigator.getParam('gameId'),
       update: wasSelected
         // TODO: think about extension of helpers
