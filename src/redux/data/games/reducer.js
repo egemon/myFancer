@@ -12,3 +12,4 @@ export const selectedPlayerIdsSelector = createSelector(
   [gamesSelectors.byId, (state, props) => props.navigation.getParam('gameId')],
   (gamesById, gameId) => gamesById[gameId].players,
 )
+export const allGamesSelector = gamesSelectors.allItemsSelector

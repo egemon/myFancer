@@ -51,34 +51,32 @@ const createCollectionStatusReducer = asyncCollectionActions => combineReducers(
 })
 
 const createCollectionDataReducer = (asyncCollectionActions, otherActions) => handleActions({
-  [asyncCollectionActions.create.success]: (state, { payload }) => $update(state, {
+  // TODO: think more about model relations
+  [asyncCollectionActions.create.success]: (state, { payload: item }) => $update(state, {
     [byId]: {
       $merge: {
-        [payload.id]: payload,
+        [item.id]: item,
       },
     },
     [ids]: {
-      $push: [payload.id],
+      $push: [item.id],
     },
   }),
-  //   TODO: think more about model relations
-  // [asyncCollectionActions.read.success]: (state, { payload }) => $update(state, {
-  //   [byId]: { $merge: {
-  //       [payload.id]: payload,
-  //     } },
-  //   [ids]: {
-  //     $push: [payload.id],
-  //   },
-  // }),
-  [asyncCollectionActions.update.success]: (state, { payload }) => $update(state, {
+  [asyncCollectionActions.read.success]: (state, { payload: items }) => $update(state, {
+    [byId]: {
+      $merge: R.indexBy(R.prop('id'))(items),
+    },
+    [ids]: R.union(R.map(R.prop('id'))(items)),
+  }),
+  [asyncCollectionActions.update.success]: (state, { payload: item }) => $update(state, {
     [byId]: {
       // TODO: we are not allowed to use functions here, because we r sending this update to server
-      [payload.id]: payload.update,
+      [item.id]: item.update,
     },
   }),
-  [asyncCollectionActions.remove.success]: (state, { payload }) => $update(state, {
-    [byId]: R.omit([payload.id]),
-    [ids]: R.reject(R.equals(payload.id)),
+  [asyncCollectionActions.remove.success]: (state, { payload: itemId }) => $update(state, {
+    [byId]: R.omit([itemId]),
+    [ids]: R.reject(R.equals(itemId)),
   }),
   ...otherActions,
 }, initState)
