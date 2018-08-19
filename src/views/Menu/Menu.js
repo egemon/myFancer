@@ -6,10 +6,28 @@ import { Button, List, ListItem } from 'react-native-elements'
 import connect from 'react-redux/es/connect/connect'
 import { createStructuredSelector } from 'reselect'
 import { bindActionCreators } from 'redux'
-import { lifecycle, compose } from 'recompose'
+import { lifecycle, compose, pure } from 'recompose'
 import { allGamesSelector } from '../../redux/data/games/reducer'
 import { makeGame } from './tasks/makeGame'
 import { getAllGames } from './tasks/getAllGames'
+
+const MenuC = compose(
+  connect(
+    createStructuredSelector({
+      allGames: allGamesSelector,
+    }),
+    dispatch => bindActionCreators({
+      getAllGames,
+      makeGame,
+    }, dispatch),
+  ),
+  pure,
+  lifecycle({
+    componentDidMount() {
+      this.props.getAllGames()
+    },
+  }),
+)
 
 const MenuV = ({
   makeGame: hanldePress,
@@ -40,25 +58,10 @@ MenuV.propTypes = {
     date: PropTypes.number.isRequired,
   })).isRequired,
 }
+
 MenuV.defaultProps = {
 
 }
 
-const MenuC = compose(
-  connect(
-    createStructuredSelector({
-      allGames: allGamesSelector,
-    }),
-    dispatch => bindActionCreators({
-      getAllGames,
-      makeGame,
-    }, dispatch),
-  ),
-  lifecycle({
-    componentDidMount() {
-      this.props.getAllGames()
-    },
-  }),
-)(MenuV)
 
-export default MenuC
+export default MenuC(MenuV)

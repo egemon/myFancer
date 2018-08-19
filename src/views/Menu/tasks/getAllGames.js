@@ -4,9 +4,9 @@ import { gameCollectionActions } from '../../../redux/data/games/actions'
 import { getAllGamesType } from '../../../redux/action-types'
 
 export const getAllGames = createAction(getAllGamesType)
-export const getAllGamesTask = function* getAllGamesTask() {
+export const getAllGamesTask = function* getAllGamesTask({ payload: params }) {
   try {
-    yield put(gameCollectionActions.read.trigger())
+    yield put(gameCollectionActions.read.trigger(params))
     yield take(gameCollectionActions.read.SUCCESS)
   } catch (err) {
     console.log('createGameTaskError', err)
